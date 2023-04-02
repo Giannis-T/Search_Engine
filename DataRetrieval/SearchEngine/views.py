@@ -27,5 +27,8 @@ def view_results(request):
         "results": data
     })  
 
+def next_ten():
+    pass
+
 def advanced_search(request):
     return render(request,"search_engine/advanced_search.html")

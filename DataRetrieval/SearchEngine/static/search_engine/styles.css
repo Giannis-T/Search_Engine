@@ -18,9 +18,9 @@
     margin: 200px 0;
     border-radius: 27px;
     border: 1px rgb(190, 182, 182) solid;
-    font-size: 20px;
+    font-size: 16px;
     width: 500px;
-    height: 30px;
+    height: 34px;
     padding: 5px; 
   }
   input:focus{
@@ -29,7 +29,7 @@
   }
 
   .input_text [type="text"]:hover {
-    border: 1px solid rgb(214, 214, 214);
+    border: 1px solid rgb(199, 198, 198);
   }
 
   .search_button input[type="submit"] {
@@ -45,13 +45,14 @@
     margin: 260px 0;
     padding:9px 9px;
     border-radius: 4px; /*roundness*/
-    border-color: grey;  
+    border-color: rgb(215, 214, 214);  
     width:100px;
+    border-width: 1px;
   }
 
   .search_button input[type="submit"]:hover {
-    background-color: rgb(236, 233, 227);
-    color: black;;
+    background-color: rgb(241, 239, 235);
+    color: black;
   } 
 
 
