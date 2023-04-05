@@ -1,8 +1,10 @@
 {% extends "search_engine/layout.html" %}
 {% block body %}
+    
     <h2>Search</h2>
     <h1 class="logo">Not Google</h1>
-    <form action="https://google.com/search">
+    <form action="{% url 'search' %}" method="post">
+        {% csrf_token %}
         <div class="input_text">
             <input type="text" name="q">
         </div>
