@@ -4,8 +4,8 @@ Search Engine with apache🚁 lucene
 README
 
 Το Project είναι χωρισμένο σε δυο κύρια μέρη:
-•	Django Application
-•	Lucene Application
+*	Django Application
+*	Lucene Application
 
 Το Django Application χωρίζεται σε:
 *	Frontend 
