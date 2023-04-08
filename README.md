@@ -9,7 +9,7 @@ README
 
 Το Django Application χωρίζεται σε:
 *	Frontend 
-*	 Βackend 
+*	Βackend 
 <br>
 Το Frontend διαχειρίζεται την επικοινωνία του χρήστη με την εφαρμογή και για την υλοποίηση του χρησιμοποιούμε Django Templates.
 <br><br>
