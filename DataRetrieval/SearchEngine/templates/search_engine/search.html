@@ -1,14 +1,20 @@
 {% extends "search_engine/layout.html" %}
 {% block body %}
     
-    <h2>Search</h2>
     <h1 class="logo">Not Google</h1>
-    <form action="{% url 'search' %}" method="post">
+    <form name="search-form" action="{% url 'search' %}" method="post" >
         {% csrf_token %}
         <div class="input_text">
             <input type="text" name="q">
         </div>
         <div class="search_button">
-            <input type="submit" value="Search">
+            <input type="submit" value="Search"> 
+        </div>
+        <select class="form-select" name="field" style="left: 55%; bottom: 40%; position:absolute;" selected="lyrics">
+            {% for field in fields %}
+                    <option value={{ field }}>{{ field }}</option>
+            {% endfor %}
+          </select>
     </form>
+    
 {% endblock %}

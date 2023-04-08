@@ -4,7 +4,8 @@ import os
 import numpy as np
 
 def process_output(output):
-    if output == "Empty":
+    if "Found 0 hits" in output:
+        print("Empty Dataframe")
         return pd.DataFrame()
     lines = output.split("###")[1:]
     result = []
@@ -22,5 +23,5 @@ def process_output(output):
     df.set_index(df["rank"].astype(int), inplace=True)
     df = df[["artist", "title", "lyrics"]]
     df.at[len(df),'lyrics'] = df.at[len(df),'lyrics'][:-8]
-    df.drop_duplicates(subset="lyrics", inplace=True)
+    # df.drop_duplicates(subset="lyrics", inplace=True)
     return df

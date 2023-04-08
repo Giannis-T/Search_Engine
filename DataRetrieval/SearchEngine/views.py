@@ -11,23 +11,27 @@ def index(request):
 
 def search(request):
     if request.method == "POST":
-        response = request.POST.get("q").split()
-        query = response[0]
-        if len(response) > 1:
-            field = response[1]
-        output = java_search(query, field="text")
+        query_response = request.POST.get("q")
+        if query_response == "":
+            return HttpResponseRedirect(reverse("search"))
+        
+        query = query_response.split()[0]
+        field = request.POST.get("field")
+        output = java_search(query, field)
         if not output.empty:
             json_records = output.reset_index().to_json(orient ='records')
             data = json.loads(json_records)
             
             return render(request, "search_engine/view_results.html", {
-                "results": data
+                "results": data,
             })
         
         return HttpResponseRedirect(reverse("search"))
 
     
-    return render(request,"search_engine/search.html")
+    return render(request,"search_engine/search.html", {
+        "fields":["artist", "title", "lyrics" ],
+    })
 
 def view_history(request):
     return render(request,"search_engine/view_history.html")
