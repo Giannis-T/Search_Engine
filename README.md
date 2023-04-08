@@ -1,8 +1,6 @@
 # Search_Engine
 Search Engine with apache🚁 lucene
 
-README
-
 Το Project είναι χωρισμένο σε δυο κύρια μέρη:
 *	**Django Application**
 *	**Lucene Application**
