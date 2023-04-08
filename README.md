@@ -1,7 +1,6 @@
 # Search_Engine
 Search Engine with apache🚁 lucene
-
-![image](https://user-images.githubusercontent.com/58826551/230736816-9b8e18c6-5dfc-4255-8e06-eae178444cbb.png)
+![image](https://user-images.githubusercontent.com/58826551/230737007-82c7fe8d-aa03-4de0-afad-36514fa91f93.png)
 ![image](https://user-images.githubusercontent.com/58826551/230736937-a2fbeb50-78e4-4aee-b160-0e491f51f0b1.png)
 
 Το Project είναι χωρισμένο σε δυο κύρια μέρη:
