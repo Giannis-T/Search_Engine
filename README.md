@@ -7,13 +7,14 @@ README
 *	Django Application
 *	Lucene Application
 
-Το ** Django Application ** χωρίζεται σε:
+<p>Το ** Django Application ** χωρίζεται σε:
 *	Frontend 
 *	Βackend 
 Το Frontend διαχειρίζεται την επικοινωνία του χρήστη με την εφαρμογή και για την υλοποίηση του χρησιμοποιούμε Django Templates.
 <br><br>
 To Backend διαχειρίζεται τις επιλογές του χρήστη από το Frontend και είναι υπεύθυνο για την επικοινωνία με το Lucene Application(SearchEngine\services  search.py). Επίσης, διαχειρίζεται την επεξεργασία των αποτελεσμάτων που δέχεται από το Lucene Application(SearchEngine\services  process_output.py) για την παρουσίαση τους στον τελικό χρήστη.
 <br><br>
+ </p>
 To ** Lucene Application ** έχει το μορφή ενός .jar αχρείου το οποίο καλείτε από το Backend με τα κατάλληλα ορίσματα για να γίνει η κάθε αναζήτηση. Αποτελείται από δυο αρχεία:<br><br>
 * CreateIndex.java για τη δημιουργία των indexes(Καλείται μια φορά από τον administrator και δεν ξανακαλείται). 
 <br>
