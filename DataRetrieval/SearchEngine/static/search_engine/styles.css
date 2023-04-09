@@ -1,3 +1,15 @@
+  .select_fields {
+    /* transform: translateY(100%); */
+    /* padding-right:200px; */
+    left: 55%;
+    bottom: 40%;
+    position: absolute;
+    font-family: Arial, Helvetica, sans-serif;
+    border-radius: 27px;
+    border: 1px rgb(190, 182, 182) solid;
+
+
+  }  
   .logo {
     position: absolute;
     left: 50%;
