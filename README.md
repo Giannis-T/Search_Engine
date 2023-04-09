@@ -1,5 +1,5 @@
 # Search_Engine
-Search Engine with apache🚁 lucene 
+Search Engine with Apache🚁 Lucene 
 <br><br>
 ![image](https://user-images.githubusercontent.com/58826551/230737007-82c7fe8d-aa03-4de0-afad-36514fa91f93.png)
 <br><br>
