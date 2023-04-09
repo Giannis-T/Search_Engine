@@ -1,15 +1,23 @@
   .select_fields {
-    /* transform: translateY(100%); */
-    /* padding-right:200px; */
     left: 55%;
     bottom: 40%;
     position: absolute;
     font-family: Arial, Helvetica, sans-serif;
-    border-radius: 27px;
-    border: 1px rgb(190, 182, 182) solid;
+    border-radius: 4px; 
+    border-color: rgb(215, 214, 214);  
+    width:100px;
+    padding:10px 15px;
+    border-width: 1px;
+    text-align: center;
+    color:rgb(49, 45, 45);
+    font-size: medium;
+    background-color: white;
+  } 
+  .select_fields :hover {
+    background-color: rgb(241, 239, 235);
+    color: black;
+  }
 
-
-  }  
   .logo {
     position: absolute;
     left: 50%;
@@ -18,7 +26,6 @@
     /* margin: */
     font-family: arial,sans-serif;
     color: #bdc1c6;
-    
     padding: 5px;
   }
   

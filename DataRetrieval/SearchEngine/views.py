@@ -34,7 +34,9 @@ def search(request):
     })
 
 def view_history(request):
-    return render(request,"search_engine/view_history.html")
+    return render(request,"search_engine/view_history.html", {
+        "fields":["artist", "title", "lyrics" ],
+    })
 
 # def view_results(request, results):
 #     # json_records = results[0:3].reset_index().to_json(orient ='records')

@@ -10,7 +10,7 @@
         <div class="search_button">
             <input type="submit" value="Search"> 
         </div>
-        <select class="form-select" name="field" style="left: 55%; bottom: 40%; position:absolute;" selected="lyrics">
+        <select class="select_fields" name="field" style="left: 55%; bottom: 40%; position:absolute;" selected="lyrics">
             {% for field in fields %}
                     <option value={{ field }}>{{ field }}</option>
             {% endfor %}

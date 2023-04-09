@@ -1,5 +1,31 @@
 {% extends "search_engine/layout.html" %}
 
 {% block body %}
-<strong>History</strong>
+    <h2>History</h2>
+    <br>
+    <br>
+    <table class="table  table-bordered table-striped" style="margin-left:10px; margin-right:10px;">
+        <thead class="thead-dark">
+          <tr>
+            <th>Rank</th>
+            <th>Artist</th>
+            <th>Title</th>
+            <th>Lyrics</th>
+          </tr>
+        </thead>
+        <tbody>
+        <!-- jinja2 Technique -->
+        {% if results %}  
+            {% for i in results %}
+            <tr>
+                <td class="text-nowrap">{{i.rank}}</td>
+                <td class="text-nowrap">{{i.artist}}</td>
+                <td class="text-nowrap">{{i.title}}</td>
+                <td>{{i.lyrics}}</td>
+            </tr>
+            {% endfor %}
+        {% endif %}
+        </tbody>
+      </table>
+    </div>
 {% endblock %}
