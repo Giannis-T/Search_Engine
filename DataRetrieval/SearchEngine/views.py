@@ -5,6 +5,7 @@ import pandas as pd
 import json
 from .services.search import java_search
 
+current_page = 1
 
 def index(request):
     return HttpResponseRedirect("search")
@@ -17,7 +18,7 @@ def search(request):
         
         query = query_response.split()[0]
         field = request.POST.get("field")
-        output = java_search(query, field)
+        output = java_search(query, field, current_page)
         if not output.empty:
             json_records = output.reset_index().to_json(orient ='records')
             data = json.loads(json_records)
