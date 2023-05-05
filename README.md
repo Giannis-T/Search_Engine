@@ -1,9 +1,11 @@
 # Search_Engine
 Search Engine with Apache🚁 Lucene 
 <br><br>
-![image](https://user-images.githubusercontent.com/58826551/230737007-82c7fe8d-aa03-4de0-afad-36514fa91f93.png)
+![image](https://user-images.githubusercontent.com/58826551/236488631-3ff9a9df-e824-4127-b4bb-c8245c939bfb.png)
 <br><br>
-![image](https://user-images.githubusercontent.com/58826551/230736937-a2fbeb50-78e4-4aee-b160-0e491f51f0b1.png)
+![image](https://user-images.githubusercontent.com/58826551/236487951-d76cb0c6-a965-4bb4-85b3-66a56a3c39d0.png)
+<br><br>
+![image](https://user-images.githubusercontent.com/58826551/236488474-054bd326-54f6-4001-ad42-9c4b9660998d.png)
 
 Το Project είναι χωρισμένο σε δυο κύρια μέρη:
 *	**Django Application**
