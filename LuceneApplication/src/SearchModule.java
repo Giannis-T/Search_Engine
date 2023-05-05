@@ -33,26 +33,19 @@ import java.util.Scanner;
 public class SearchModule {
 	public static void main(String[] args) throws IOException, ParseException {
 		StandardAnalyzer analyzer = new StandardAnalyzer();
-    	String querystr = args.length > 0 ? args[0] : "abba";
-		String field = "lyrics";
-		if (args.length == 2) {
-			field = args[1];
-			
-		}
-	
+		
+    	String querystr = args[0];
+		String field = args[1];
+		int pageNumber = Integer.parseInt(args[2]);
+		int hitsPerPage = 10;
+		
 		Query q = new QueryParser(field, analyzer).parse(querystr);
 		
 		// 3. search
-		int hitsPerPage = 10;
+		
 		IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get("/SearchEngine/NewIndex")));
 		IndexSearcher searcher = new IndexSearcher(reader);
 		
-		
-//		int hitsPerPage = 10;
-		int pageNumber = 1;
-		if (args.length == 3) {
-		    pageNumber = Integer.parseInt(args[2]);
-		} 
 	    // Create a TopDocsCollector to retrieve the top hits
 	    TopScoreDocCollector collector = TopScoreDocCollector.create(hitsPerPage * pageNumber, Integer.MAX_VALUE);
 		// Execute the search and collect the top hits
