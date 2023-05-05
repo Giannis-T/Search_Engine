@@ -1,6 +1,9 @@
 from django.db import models
 
-# Create your models here.
 
-# class HistoryEntry(models.Model):
+class Query(models.Model):
+    query = models.CharField(max_length = 64)
+    field = models.CharField(max_length = 20)
 
+    def __str__(self):
+        return f"{self.pk}. Query: {self.query}  for Field: {self.field}"

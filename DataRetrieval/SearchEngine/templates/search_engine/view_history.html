@@ -3,29 +3,16 @@
 {% block body %}
     <h2>History</h2>
     <br>
-    <br>
-    <table class="table  table-bordered table-striped" style="margin-left:10px; margin-right:10px;">
-        <thead class="thead-dark">
-          <tr>
-            <th>Rank</th>
-            <th>Artist</th>
-            <th>Title</th>
-            <th>Lyrics</th>
-          </tr>
-        </thead>
-        <tbody>
-        <!-- jinja2 Technique -->
-        {% if results %}  
-            {% for i in results %}
-            <tr>
-                <td class="text-nowrap">{{i.rank}}</td>
-                <td class="text-nowrap">{{i.artist}}</td>
-                <td class="text-nowrap">{{i.title}}</td>
-                <td>{{i.lyrics}}</td>
-            </tr>
-            {% endfor %}
-        {% endif %}
-        </tbody>
-      </table>
-    </div>
+    <br>   
+    {% if history_queries %} 
+         
+        {% for query in history_queries %}
+        <div class="history_result">
+          <a href="{% url 'search' query.pk %}"> -Query: {{query.query}} -Field: {{query.field}}</a>
+        </div>
+        {% comment %} <hr> {% endcomment %}
+       
+        {% endfor %}
+    {% endif %}
+       
 {% endblock %}
