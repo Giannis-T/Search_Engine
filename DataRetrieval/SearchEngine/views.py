@@ -5,12 +5,15 @@ import pandas as pd
 import json
 from .services.search import java_search
 
+global current_page
 current_page = 1
 
 def index(request):
     return HttpResponseRedirect("search")
 
 def search(request):
+    global current_page
+
     if request.method == "POST":
         query_response = request.POST.get("q")
         if query_response == "":
@@ -25,6 +28,9 @@ def search(request):
             
             return render(request, "search_engine/view_results.html", {
                 "results": data,
+                "query":query,
+                "field":field,
+                "current_page":current_page,
             })
         
         return HttpResponseRedirect(reverse("search"))
@@ -39,16 +45,47 @@ def view_history(request):
         "fields":["artist", "title", "lyrics" ],
     })
 
-# def view_results(request, results):
-#     # json_records = results[0:3].reset_index().to_json(orient ='records')
-#     # data = []
-#     # data = json.loads(json_records)
-#     return render(request, "search_engine/view_results.html", {
-#         "results": results
-#     })  
+def next_ten(request):
+    global current_page
+    query = request.POST.get("q")
+    field = request.POST.get("field")
 
-def next_ten():
-    pass
+    output = java_search(query, field, current_page+1)
+    current_page += 1
+    if not output.empty:
+        json_records = output.reset_index().to_json(orient ='records')
+        data = json.loads(json_records)
+        
+        return render(request, "search_engine/view_results.html", {
+            "results": data,
+            "query":query,
+            "field":field,
+            "current_page":current_page,
+        })
+    return HttpResponseRedirect(reverse("search"))
+
+def prev_ten(request):
+    global current_page
+    query = request.POST.get("q")
+    field = request.POST.get("field")
+    if current_page == 1:
+        output = java_search(query, field, current_page)
+    else:
+        output = java_search(query, field, current_page-1)
+        current_page -= 1
+    if not output.empty:
+        json_records = output.reset_index().to_json(orient ='records')
+        data = json.loads(json_records)
+        
+        return render(request, "search_engine/view_results.html", {
+            "results": data,
+            "query":query,
+            "field":field,
+            "current_page":current_page,
+        })
+    return HttpResponseRedirect(reverse("search"))
+
+
 
 def advanced_search(request):
     return render(request,"search_engine/advanced_search.html")

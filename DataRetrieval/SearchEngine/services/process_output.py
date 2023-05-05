@@ -22,5 +22,5 @@ def process_output(output):
     df = pd.DataFrame(result, columns=["rank", "artist", "title", "lyrics"])
     df.set_index(df["rank"].astype(int), inplace=True)
     df = df[["artist", "title", "lyrics"]]
-    df.at[len(df),'lyrics'] = df.at[len(df),'lyrics'][:-12]
+    df.at[len(df),'lyrics'] = df.at[len(df),'lyrics'][:-10]
     return df

@@ -2,8 +2,30 @@
 
 {% block body %}
     <h2>Results</h2>
+    Current Page: <b>{{current_page}}</b>
     <br>
-    <br>
+    <div style="display: flex;">
+      <form name="prev_ten_form" action="{% url 'prev_ten' %}" method="post" style="margin:10px">
+        {% csrf_token %}
+        <input type="hidden" name="q" value = {{query}}>
+        <input type="hidden" name="field" value= {{field}}>
+  
+        <div class="previous round">
+            <input class="previous round" type="submit" value="&#8249;"> 
+        </div>
+      </form>
+      
+      <form name="next_ten_form" action="{% url 'next_ten' %}" method="post" style="margin:10px" >
+        {% csrf_token %}
+        <input type="hidden" name="q" value = {{query}}>
+        <input type="hidden" name="field" value= {{field}}>
+  
+        <div class="next round">
+            <input class="next round" type="submit" value="&#8250;"> 
+        </div>
+      </form>
+    </div>
+
     <table class="table  table-bordered table-striped" style="margin-left:10px; margin-right:10px;">
         <thead class="thead-dark">
           <tr>
