@@ -9,9 +9,7 @@
         {% for query in history_queries %}
         <div class="history_result">
           <a href="{% url 'search' query.pk %}"> -Query: {{query.query}} -Field: {{query.field}}</a>
-        </div>
-        {% comment %} <hr> {% endcomment %}
-       
+        </div>       
         {% endfor %}
     {% endif %}
        

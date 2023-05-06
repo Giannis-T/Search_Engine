@@ -6,4 +6,4 @@ class Query(models.Model):
     field = models.CharField(max_length = 20)
 
     def __str__(self):
-        return f"{self.pk}. Query: {self.query}  for Field: {self.field}"
+        return f"Query: {self.query}  for Field: {self.field}"

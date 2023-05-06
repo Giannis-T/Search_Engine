@@ -41,9 +41,9 @@
             {% for i in results %}
             <tr>
                 <td class="text-nowrap">{{i.rank}}</td>
-                <td class="text-nowrap">{{i.artist}}</td>
-                <td class="text-nowrap">{{i.title}}</td>
-                <td>{{i.lyrics}}</td>
+                <td class="text-nowrap">{{i.artist | safe}}</td>
+                <td class="text-nowrap">{{i.title | safe}}</td>
+                <td>{{i.lyrics | safe}}</td>
             </tr>
             {% endfor %}
         {% endif %}
