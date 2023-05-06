@@ -10,5 +10,7 @@
 	<classpathentry kind="lib" path="C:/Program Files/lucene-8.11.2/queryparser/lucene-queryparser-8.11.2.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Giannis/Downloads/opencsv-5.7.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Giannis/Downloads/commons-lang3-3.12.0.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/lucene-8.11.2/highlighter/lucene-highlighter-8.11.2.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files/lucene-8.11.2/memory/lucene-memory-8.11.2.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
