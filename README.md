@@ -3,7 +3,7 @@ Search Engine with Apache🚁 Lucene
 <br><br>
 ![image](https://user-images.githubusercontent.com/58826551/236634747-c1199cf5-09a3-4421-b161-0e96601c0807.png)
 <br><br>
-![image](https://user-images.githubusercontent.com/58826551/236634704-981401eb-341d-4713-acc3-2e35d51111a3.png)
+![image](https://user-images.githubusercontent.com/58826551/236634859-d90aaf79-1d8e-4464-91d4-153a4fa8361d.png)
 <br><br>
 ![image](https://user-images.githubusercontent.com/58826551/236634798-b2668aee-458d-442c-a3f6-526a7c2dc153.png)
 
