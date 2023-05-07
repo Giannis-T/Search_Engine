@@ -1,6 +1,4 @@
 import pandas as pd
-import subprocess
-import os
 import numpy as np
 
 def process_output(output):

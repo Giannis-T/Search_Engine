@@ -3,7 +3,9 @@ from django.urls import reverse
 from django.http import  HttpResponseRedirect
 import json
 from .services.search import java_search
+from .services.recommend_history_module import get_recommendation
 from .models import Query
+
 
 
 global current_page
@@ -12,14 +14,19 @@ current_page = 1
 def index(request):
     return HttpResponseRedirect("search")
 
-def search(request, history_query_id=-1):
+def search(request, history_query_id=-1, rec_query="-", rec_field=""):
     global current_page
     current_page = 1
-    if request.method == "POST" or history_query_id != -1:
+
+    if request.method == "POST" or history_query_id != -1 or rec_query != "-":
         query_response = request.POST.get("q")
         if query_response == "":
             return HttpResponseRedirect(reverse("search"))
-        if history_query_id == -1 :
+        if rec_query != "-":
+            query = rec_query
+            field = rec_field
+
+        elif history_query_id == -1 :
             query = query_response.split()[0]
             field = request.POST.get("field")
         else:
@@ -29,6 +36,7 @@ def search(request, history_query_id=-1):
 
         output = java_search(query, field, current_page)
         if not output.empty:
+            print("Empty Output")
             Query.objects.create(query = query, field = field) 
 
             json_records = output.reset_index().to_json(orient ='records')
@@ -49,9 +57,20 @@ def search(request, history_query_id=-1):
     })
 
 def view_history(request):
+    try:
+        recommendation = get_recommendation(Query.objects.all())
+    except:
+        recommendation = ("", "")
     return render(request,"search_engine/view_history.html", {
         "history_queries": Query.objects.all()[::-1],
+        "rec_query": recommendation[0],
+        "rec_field": recommendation[1],
     })
+
+def delete_history(request):
+    Query.objects.all().delete()
+    print("Successful Deletion")
+    return HttpResponseRedirect("view_history")
 
 def next_ten(request):
     global current_page
@@ -94,6 +113,8 @@ def prev_ten(request):
     return HttpResponseRedirect(reverse("search"))
 
 
+# def history_recommend(request):
+    
 
 def advanced_search(request):
     return render(request,"search_engine/advanced_search.html")

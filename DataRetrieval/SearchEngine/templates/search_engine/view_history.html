@@ -3,14 +3,27 @@
 {% block body %}
     <h2>History</h2>
     <br>
-    <br>   
+    <br>  
+    <a href="{% url 'delete_history'%}">Delete History</a>
+    <br><br>
+    {% if rec_query %} 
+      History Recommendation
+      <a href="{% url 'search' rec_query rec_field%}"> -Query: {{rec_query}} -Field: {{rec_field}}</a>
+      <br>
+      <br>
+    {% else %}
+      There is no recommendation available.
+    {% endif %}
+    
     {% if history_queries %} 
-         
-        {% for query in history_queries %}
-        <div class="history_result">
-          <a href="{% url 'search' query.pk %}"> -Query: {{query.query}} -Field: {{query.field}}</a>
-        </div>       
-        {% endfor %}
+      {% for query in history_queries %}
+      <div class="history_result">
+        <a href="{% url 'search' query.pk %}"> -Query: {{query.query}} -Field: {{query.field}}</a>
+      </div>       
+      {% endfor %}
+    {% else %}
+      <br><br>
+      History is Empty.
     {% endif %}
        
 {% endblock %}
