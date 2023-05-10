@@ -2,11 +2,11 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.http import  HttpResponseRedirect
 import json
+from .services.python_advanced_search import python_advanced_search
 from .services.search import java_search
 from .services.recommend_history_module import get_recommendation
 from .models import Query
-
-
+import gensim
 
 global current_page
 current_page = 1
@@ -36,7 +36,6 @@ def search(request, history_query_id=-1, rec_query="-", rec_field=""):
 
         output = java_search(query, field, current_page)
         if not output.empty:
-            print("Empty Output")
             Query.objects.create(query = query, field = field) 
 
             json_records = output.reset_index().to_json(orient ='records')
@@ -48,7 +47,7 @@ def search(request, history_query_id=-1, rec_query="-", rec_field=""):
                 "field":field,
                 "current_page":current_page,
             })
-        
+        print("Empty Output")
         return HttpResponseRedirect(reverse("search"))
 
     
@@ -117,4 +116,29 @@ def prev_ten(request):
     
 
 def advanced_search(request):
-    return render(request,"search_engine/advanced_search.html")
+    global current_page
+    current_page = 1
+    if request.method == "POST":
+        query = request.POST.get("q")
+        if query == "":
+            return HttpResponseRedirect(reverse("search"))
+
+        output = python_advanced_search(query)
+        if not output.empty:
+            Query.objects.create(query = query, field = "lyrics") 
+
+            json_records = output.reset_index().to_json(orient ='records')
+            data = json.loads(json_records)
+            
+            return render(request, "search_engine/view_results.html", {
+                "results": data,
+                "query":query,
+                "field":"lyrics",
+                "current_page":current_page,
+            })
+        print("Empty Output")
+        return HttpResponseRedirect(reverse("advanced_search"))
+    
+    return render(request,"search_engine/advanced_search.html", {
+        "fields":["artist", "title", "lyrics" ],
+    })

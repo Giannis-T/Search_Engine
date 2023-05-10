@@ -56,7 +56,7 @@ public class SearchModule {
 		
 		// 3. search
 		
-		IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get("/SearchEngine/NewIndex")));
+		IndexReader reader = DirectoryReader.open(FSDirectory.open(Paths.get("/SearchEngine/src/index")));
 		IndexSearcher searcher = new IndexSearcher(reader);
 	    TopScoreDocCollector collector = TopScoreDocCollector.create(hitsPerPage * pageNumber, Integer.MAX_VALUE);
 	  

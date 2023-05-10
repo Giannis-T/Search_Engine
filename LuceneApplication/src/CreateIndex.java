@@ -24,7 +24,7 @@ import org.apache.lucene.store.FSDirectory;
 
 public class CreateIndex {
 	
-	protected String indexPath = "/SearchEngine/NewIndex";
+	protected String indexPath = "/SearchEngine/src/index";
 	protected Directory directory;
 	
 	public CreateIndex() throws IOException {
