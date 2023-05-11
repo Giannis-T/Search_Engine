@@ -20,10 +20,16 @@ import org.apache.lucene.queryparser.classic.QueryParser;
 import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
+import org.apache.lucene.search.Sort;
+import org.apache.lucene.search.SortField;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.search.TopScoreDocCollector;
+import org.apache.lucene.search.grouping.GroupDocs;
+import org.apache.lucene.search.grouping.GroupingSearch;
+import org.apache.lucene.search.grouping.TopGroups;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.util.BytesRef;
 import org.apache.lucene.search.highlight.Fragmenter;
 import org.apache.lucene.search.highlight.Highlighter;
 import org.apache.lucene.search.highlight.InvalidTokenOffsetsException;
@@ -32,8 +38,6 @@ import org.apache.lucene.search.highlight.SimpleHTMLFormatter;
 import org.apache.lucene.search.highlight.SimpleSpanFragmenter;
 import org.apache.lucene.search.highlight.TextFragment;
 import org.apache.lucene.search.highlight.TokenSources;
-
-import com.opencsv.CSVReader;
 
 import org.apache.lucene.store.ByteBuffersDirectory;
 
@@ -69,6 +73,29 @@ public class SearchModule {
 //	    
         searcher.search(q, collector);
         
+        //////////////////////////////CHANGES
+		if (field.equals("artist")) { //an to field einai null tote na ginetai to grouping search?
+			GroupingSearch groupingSearch = new GroupingSearch("artist");
+			Sort sort = new Sort(
+					new SortField("artist", SortField.Type.STRING),
+					new SortField("title", SortField.Type.STRING),
+					new SortField("lyrics", SortField.Type.STRING)
+					);
+			groupingSearch.setSortWithinGroup(sort);
+			TopGroups<BytesRef> groups = groupingSearch.search(searcher, q, 0, Integer.MAX_VALUE);
+		
+			GroupDocs<BytesRef>[] docs = groups.groups;
+			for (GroupDocs<BytesRef> groupDocs : docs) {
+				System.out.println("group:" + new String(groupDocs.groupValue.bytes));
+				System.out.println(groupDocs.totalHits);
+				for (ScoreDoc scoreDoc: groupDocs.scoreDocs) {
+					Document doc = searcher.doc(scoreDoc.doc);
+					System.out.println(doc.get("title"));
+				}
+			}
+		}
+		////////////////////////////// END
+		
 	    ScoreDoc[] hits = collector.topDocs((pageNumber - 1) * hitsPerPage, hitsPerPage).scoreDocs;
 
 		// 4. display results
