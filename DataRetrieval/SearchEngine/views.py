@@ -5,6 +5,7 @@ import json
 from .services.python_advanced_search import python_advanced_search
 from .services.search import java_search
 from .services.recommend_history_module import get_recommendation
+from .services.group_by_artist import sort_results
 from .models import Query
 import gensim
 
@@ -46,6 +47,7 @@ def search(request, history_query_id=-1, rec_query="-", rec_field=""):
                 "query":query,
                 "field":field,
                 "current_page":current_page,
+                "search_type": "search",
             })
         print("Empty Output")
         return HttpResponseRedirect(reverse("search"))
@@ -75,9 +77,14 @@ def next_ten(request):
     global current_page
     query = request.POST.get("q")
     field = request.POST.get("field")
+    search_type = request.POST.get("search_type")
 
-    output = java_search(query, field, current_page+1)
+    if search_type == "advanced_search":
+        output = python_advanced_search(query, current_page+1)
+    else:
+        output = java_search(query, field, current_page+1)
     current_page += 1
+
     if not output.empty:
         json_records = output.reset_index().to_json(orient ='records')
         data = json.loads(json_records)
@@ -87,6 +94,7 @@ def next_ten(request):
             "query":query,
             "field":field,
             "current_page":current_page,
+            "search_type":search_type,
         })
     return HttpResponseRedirect(reverse("search"))
 
@@ -94,11 +102,20 @@ def prev_ten(request):
     global current_page
     query = request.POST.get("q")
     field = request.POST.get("field")
+    search_type = request.POST.get("search_type")
+
     if current_page == 1:
-        output = java_search(query, field, current_page)
+        if search_type == "advanced_search":
+            output = python_advanced_search(query, current_page)
+        else:
+            output = java_search(query, field, current_page)
     else:
-        output = java_search(query, field, current_page-1)
+        if search_type == "advanced_search":
+            output = python_advanced_search(query, current_page-1)
+        else:
+            output = java_search(query, field, current_page-1)
         current_page -= 1
+
     if not output.empty:
         json_records = output.reset_index().to_json(orient ='records')
         data = json.loads(json_records)
@@ -108,12 +125,32 @@ def prev_ten(request):
             "query":query,
             "field":field,
             "current_page":current_page,
+            "search_type":search_type,
         })
     return HttpResponseRedirect(reverse("search"))
 
 
-# def history_recommend(request):
-    
+def group_by_len(request):
+    global current_page
+    if request.method == "POST":
+        query = request.POST.get("q")
+        field = request.POST.get("field")
+        result = java_search(query, field, current_page)
+        if not result.empty:
+            output = sort_results(result)
+            json_records = output.reset_index().to_json(orient ='records')
+            data = json.loads(json_records)
+            
+            return render(request, "search_engine/view_results.html", {
+                "results": data,
+                "query":query,
+                "field":field,
+                "current_page":current_page,
+            })
+        return HttpResponseRedirect(reverse("search"))
+
+    return HttpResponseRedirect(reverse("search"))
+
 
 def advanced_search(request):
     global current_page
@@ -123,7 +160,8 @@ def advanced_search(request):
         if query == "":
             return HttpResponseRedirect(reverse("search"))
 
-        output = python_advanced_search(query)
+        output = python_advanced_search(query, current_page)
+
         if not output.empty:
             Query.objects.create(query = query, field = "lyrics") 
 
@@ -135,6 +173,8 @@ def advanced_search(request):
                 "query":query,
                 "field":"lyrics",
                 "current_page":current_page,
+                "search_type": "advanced_search",
+
             })
         print("Empty Output")
         return HttpResponseRedirect(reverse("advanced_search"))

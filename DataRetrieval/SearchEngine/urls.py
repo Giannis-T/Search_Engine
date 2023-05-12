@@ -12,6 +12,6 @@ urlpatterns = [
     path("view_results", views.search, name="view_results"),
     path("next_ten", views.next_ten, name="next_ten"),
     path("prev_ten", views.prev_ten, name="prev_ten"),
-    path("delete_history", views.delete_history, name="delete_history")
-
+    path("delete_history", views.delete_history, name="delete_history"),
+    path("group_by_len", views.group_by_len, name="group_by_len"),
 ]

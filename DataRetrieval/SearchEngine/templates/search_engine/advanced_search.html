@@ -2,7 +2,7 @@
 
 {% block body %}
     
-    <h1 class="logo">Advanced Not Google</h1>
+    <h1 class="logo">Advanced Lyric Search</h1>
     <form name="search-form" action="{% url 'advanced_search' %}" method="post" >
         {% csrf_token %}
         <div class="input_text">
@@ -11,11 +11,6 @@
         <div class="search_button">
             <input type="submit" value="Search"> 
         </div>
-        {% comment %} <select class="select_fields" name="field" style="left: 55%; bottom: 40%; position:absolute;" selected="lyrics">
-            {% for field in fields %}
-                    <option value={{ field }}>{{ field }}</option>
-            {% endfor %}
-          </select> {% endcomment %}
     </form>
     
 {% endblock %}

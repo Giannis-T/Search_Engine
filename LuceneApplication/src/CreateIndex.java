@@ -1,35 +1,27 @@
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
 import org.apache.lucene.document.TextField;
-import org.apache.lucene.index.DirectoryReader;
-import org.apache.lucene.index.IndexReader;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.queryparser.classic.ParseException;
-import org.apache.lucene.queryparser.classic.QueryParser;
-import org.apache.lucene.search.IndexSearcher;
-import org.apache.lucene.search.Query;
-import org.apache.lucene.search.ScoreDoc;
-import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.Directory;
 import org.apache.lucene.store.FSDirectory;
+import org.apache.lucene.store.NIOFSDirectory;
 
 public class CreateIndex {
 	
-	protected String indexPath = "/SearchEngine/src/index";
+	protected String indexPath = "/SearchEngine/LuceneIndex";
 	protected Directory directory;
 	
 	public CreateIndex() throws IOException {
-	
-		directory = FSDirectory.open(Paths.get(indexPath));
+		
+		directory = new NIOFSDirectory(Paths.get(indexPath));
+//		directory = FSDirectory.open(Paths.get(indexPath));
 	}
 	
 	public void addFileToIndex() throws IOException {
@@ -37,6 +29,7 @@ public class CreateIndex {
 	    IndexWriterConfig indexWriterConfig = new IndexWriterConfig(analyzer);
 	    Directory indexDirectory = FSDirectory.open(Paths.get(indexPath));
 	    IndexWriter indexWriter = new IndexWriter(indexDirectory, indexWriterConfig);
+    	indexWriter.deleteAll();
 	    String line = "";  
 		String splitBy = "\t"; 
 		String[] row;
@@ -63,8 +56,6 @@ public class CreateIndex {
         doc.add(new TextField("artist", artist, Field.Store.YES));
         doc.add(new TextField("title", title, Field.Store.YES));
         doc.add(new TextField("lyrics", lyrics, Field.Store.YES));
-        // use a string field for isbn because we don't want it tokenized
-//        doc.add(new StringField("isbn", isbn, Field.Store.YES));
         w.addDocument(doc);
     }
     

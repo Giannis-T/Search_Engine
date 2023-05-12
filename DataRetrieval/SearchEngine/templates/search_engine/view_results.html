@@ -2,6 +2,15 @@
 
 {% block body %}
     <h2>Results</h2>
+    {% if search_type != "advanced_search"%}
+      <form name="groupBy-form" action="{% url 'group_by_len' %}" method="post" >
+        {% csrf_token %}
+        <input type="hidden" name="q" value = {{query}}>
+        <input type="hidden" name="field" value = {{field}}>
+        <input class="groupBy" type="submit" value="Group By Lyrics Length"> 
+      </form>
+    {% endif %}
+        
     Current Page: <b>{{current_page}}</b>
     <br>
     <div style="display: flex;">
@@ -9,7 +18,7 @@
         {% csrf_token %}
         <input type="hidden" name="q" value = {{query}}>
         <input type="hidden" name="field" value= {{field}}>
-  
+        <input type="hidden" name="search_type" value= {{search_type}}>
         <div class="previous round">
             <input class="previous round" type="submit" value="&#8249;"> 
         </div>
@@ -19,7 +28,7 @@
         {% csrf_token %}
         <input type="hidden" name="q" value = {{query}}>
         <input type="hidden" name="field" value= {{field}}>
-  
+        <input type="hidden" name="search_type" value= {{search_type}}>
         <div class="next round">
             <input class="next round" type="submit" value="&#8250;"> 
         </div>
