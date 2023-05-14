@@ -21,7 +21,6 @@ public class CreateIndex {
 	public CreateIndex() throws IOException {
 		
 		directory = new NIOFSDirectory(Paths.get(indexPath));
-//		directory = FSDirectory.open(Paths.get(indexPath));
 	}
 	
 	public void addFileToIndex() throws IOException {
@@ -35,11 +34,10 @@ public class CreateIndex {
 		String[] row;
 		try   
 		{  
-			//parsing a CSV file into BufferedReader class constructor  
 			BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\Giannis\\Desktop\\SearchEngine\\data\\clean_songs.tsv"));  
-			while ((line = br.readLine()) != null)   //returns a Boolean value  
+			while ((line = br.readLine()) != null)     
 			{  
-				row = line.split(splitBy);    // use comma as separator
+				row = line.split(splitBy);    
 			    	addDoc(indexWriter, row[0], row[1], row[2]);
 				}  
 				indexWriter.close();
@@ -63,29 +61,6 @@ public class CreateIndex {
     	CreateIndex index = new CreateIndex();
     	index.addFileToIndex();
     	System.out.println("Successful index creation. DONT RUN THIS AGAIN");
-//    	
-//    	// Testing if index is working
-//		StandardAnalyzer analyzer = new StandardAnalyzer();
-//    	String querystr = args.length > 0 ? args[0] : "beatles";
-//		
-//		// the "title" arg specifies the default field to use
-//		// when no field is explicitly specified in the query.
-//		Query q = new QueryParser("artist", analyzer).parse(querystr);
-//		
-//		// 3. search
-//		int hitsPerPage = 20;
-//		IndexReader reader = DirectoryReader.open(index.directory);
-//		IndexSearcher searcher = new IndexSearcher(reader);
-//		TopDocs docs = searcher.search(q, hitsPerPage);
-//		ScoreDoc[] hits = docs.scoreDocs;
-//		
-//		// 4. display results
-//		System.out.println("Found " + hits.length + " hits.");
-//		for(int i=0;i<hits.length;++i) {
-//		    int docId = hits[i].doc;
-//		    Document d = searcher.doc(docId);
-//		    System.out.println((i + 1) + ". " + d.get("artist") + "\t" + d.get("title")+ "\t" + d.get("lyrics"));
-//		}
     	
     }
     

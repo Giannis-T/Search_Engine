@@ -5,9 +5,8 @@ import json
 from .services.python_advanced_search import python_advanced_search
 from .services.search import java_search
 from .services.recommend_history_module import get_recommendation
-from .services.group_by_artist import sort_results
+from .services.group_by_len import sort_results
 from .models import Query
-import gensim
 
 global current_page
 current_page = 1

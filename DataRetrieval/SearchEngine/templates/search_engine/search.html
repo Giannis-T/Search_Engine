@@ -1,7 +1,7 @@
 {% extends "search_engine/layout.html" %}
 {% block body %}
     
-    <h1 class="logo">Not Google</h1>
+    <h1 class="logo">Lucene Search</h1>
     <form name="search-form" action="{% url 'search' %}" method="post" >
         {% csrf_token %}
         <div class="input_text">

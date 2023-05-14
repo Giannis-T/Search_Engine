@@ -6,7 +6,6 @@ from nltk.corpus import stopwords
 import numpy as np
 from gensim import utils
 from scipy.spatial.distance import cdist
-import os
 import re
 
 stop_words = stopwords.words('english')
@@ -46,6 +45,7 @@ def find_similar_songs(query, encoded_df, df, page_number):
     for distance in smallest_distances:
         results.append(df.iloc[distance])
     return results
+
 
 def highlight_words(query, lyric):
     for word in query.split():

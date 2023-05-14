@@ -16,9 +16,11 @@ def process_output(output):
         result.append(tmp)
 
     result = np.array(result)
+    print("_________________________IM IN Process OUTPUT_______________________")
     
+
     df = pd.DataFrame(result, columns=["rank", "artist", "title", "lyrics"])
     df.set_index(df["rank"].astype(int), inplace=True)
     df = df[["artist", "title", "lyrics"]]
-    df.at[len(df),'lyrics'] = df.at[len(df),'lyrics'][:-10]
+    df.loc[df.index[-1], 'lyrics'] = df.loc[df.index[-1], 'lyrics'][:-10]
     return df
