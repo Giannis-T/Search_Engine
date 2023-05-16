@@ -1,7 +1,41 @@
 {% extends "search_engine/layout.html" %}
-
+{% block title %}History{% endblock %}
 {% block body %}
-    <h2>History</h2>
+<div class="container">
+  <h1 class="history-logo">History</h1>
+  <a class="delete_link" href="{% url 'delete_history' %}">Delete History</a>
+  <br><br>
+
+  {% if rec_query %}
+    <div class="history_result">
+      <strong>History Recommendation:</strong>
+      <a class="history_link" href="{% url 'search' rec_query rec_field %}">
+        - Query: {{ rec_query }} - Field: {{ rec_field }}
+      </a>
+    </div>
+    <br>
+  {% else %}
+    <div class="history_result">
+      <strong>No recommendation available.</strong>
+    </div>
+    <br>
+  {% endif %}
+
+  {% if history_queries %}
+    {% for query in history_queries %}
+      <div class="history_result">
+        <a class="history_link" href="{% url 'search' query.pk %}">
+          - Query: {{ query.query }} - Field: {{ query.field }}
+        </a>
+      </div>
+    {% endfor %}
+  {% else %}
+    <div class="history_result">
+      <strong>History is Empty.</strong>
+    </div>
+  {% endif %}
+</div>
+    {% comment %} <h2>History</h2>
     <br>
     <br>  
     <a href="{% url 'delete_history'%}">Delete History</a>
@@ -24,6 +58,6 @@
     {% else %}
       <br><br>
       History is Empty.
-    {% endif %}
+    {% endif %} {% endcomment %}
        
 {% endblock %}

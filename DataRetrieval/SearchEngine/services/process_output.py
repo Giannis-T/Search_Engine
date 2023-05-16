@@ -15,9 +15,7 @@ def process_output(output):
 
         result.append(tmp)
 
-    result = np.array(result)
-    print("_________________________IM IN Process OUTPUT_______________________")
-    
+    result = np.array(result)    
 
     df = pd.DataFrame(result, columns=["rank", "artist", "title", "lyrics"])
     df.set_index(df["rank"].astype(int), inplace=True)

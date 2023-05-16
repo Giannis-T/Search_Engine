@@ -1,16 +1,16 @@
 {% extends "search_engine/layout.html" %}
-
+{% block title %}Sentiment Search{% endblock %}
 {% block body %}
-    
-    <h1 class="logo">Advanced Lyric Search</h1>
+    <h1 class="logo">Sentiment Search</h1>
     <form name="search-form" action="{% url 'advanced_search' %}" method="post" >
         {% csrf_token %}
         <div class="input_text">
             <input type="text" name="q">
         </div>
-        <div class="search_button">
-            <input type="submit" value="Search"> 
+        <div class="button_group">
+            <div class="search_button">
+                <input type="submit" value="Search"> 
+            </div>
         </div>
     </form>
-    
 {% endblock %}

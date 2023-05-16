@@ -1,4 +1,6 @@
 {% extends "search_engine/layout.html" %}
+{% block title %}Search{% endblock %}
+
 {% block body %}
     
     <h1 class="logo">Lucene Search</h1>
@@ -7,14 +9,20 @@
         <div class="input_text">
             <input type="text" name="q">
         </div>
-        <div class="search_button">
-            <input type="submit" value="Search"> 
+        <div class="button_group">
+            <div class="search_button">
+                <input type="submit" value="Search"> 
+            </div>
+            <div class="select_button">
+                <select class="select_fields" name="field">
+                    {% for field in fields %}
+                        <option value="{{ field }}">{{ field }}</option>
+                    {% endfor %}
+                </select>
+            </div>
         </div>
-        <select class="select_fields" name="field" style="left: 55%; bottom: 40%; position:absolute;" selected="lyrics">
-            {% for field in fields %}
-                    <option value={{ field }}>{{ field }}</option>
-            {% endfor %}
-          </select>
     </form>
     
-{% endblock %}
+{% endblock %} 
+
+

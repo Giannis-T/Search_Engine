@@ -36,6 +36,7 @@ def load_encoded_df(filename):
 def find_similar_songs(query, encoded_df, df, page_number):
     if len(query) == 1:
         query += " a"
+
     df_query = pd.DataFrame({"lyrics": [query]})
     query_embedding = preprocess_lyrics(df_query)
     query_embedding = encode_lyrics(query_embedding)

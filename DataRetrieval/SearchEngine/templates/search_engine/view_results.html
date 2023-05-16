@@ -1,62 +1,63 @@
 {% extends "search_engine/layout.html" %}
 
+{% block title %}{{query}} -Search Results{% endblock %}
+
 {% block body %}
-    <h2>Results</h2>
-    {% if search_type != "advanced_search"%}
-      <form name="groupBy-form" action="{% url 'group_by_len' %}" method="post" >
+  <div class="container">
+    <h1 class="title" >Results</h1>
+      {% if search_type != "advanced_search" %}
+      <form class="groupBy-form" name="groupBy-form" action="{% url 'group_by_len' %}" method="post">
         {% csrf_token %}
-        <input type="hidden" name="q" value = {{query}}>
-        <input type="hidden" name="field" value = {{field}}>
-        <input class="groupBy" type="submit" value="Group By Lyrics Length"> 
+        <input type="hidden" name="q" value="{{query}}">
+        <input type="hidden" name="field" value="{{field}}">
+        <button class="groupBy-btn" type="submit">Group by Length</button>
       </form>
     {% endif %}
-        
-    Current Page: <b>{{current_page}}</b>
-    <br>
-    <div style="display: flex;">
-      <form name="prev_ten_form" action="{% url 'prev_ten' %}" method="post" style="margin:10px">
+
+    </div>
+    
+    <div class="current-page">Page: <strong>{{current_page}}</strong></div>
+
+    <div class="pagination">
+      <form name="prev-ten-form" action="{% url 'prev_ten' %}" method="post">
         {% csrf_token %}
-        <input type="hidden" name="q" value = {{query}}>
-        <input type="hidden" name="field" value= {{field}}>
-        <input type="hidden" name="search_type" value= {{search_type}}>
-        <div class="previous round">
-            <input class="previous round" type="submit" value="&#8249;"> 
-        </div>
+        <input type="hidden" name="q" value="{{query}}">
+        <input type="hidden" name="field" value="{{field}}">
+        <input type="hidden" name="search_type" value="{{search_type}}">
+        <button class="pagination-btn previous" type="submit">&lt;</button>
       </form>
-      
-      <form name="next_ten_form" action="{% url 'next_ten' %}" method="post" style="margin:10px" >
+
+      <form name="next-ten-form" action="{% url 'next_ten' %}" method="post">
         {% csrf_token %}
-        <input type="hidden" name="q" value = {{query}}>
-        <input type="hidden" name="field" value= {{field}}>
-        <input type="hidden" name="search_type" value= {{search_type}}>
-        <div class="next round">
-            <input class="next round" type="submit" value="&#8250;"> 
-        </div>
+        <input type="hidden" name="q" value="{{query}}">
+        <input type="hidden" name="field" value="{{field}}">
+        <input type="hidden" name="search_type" value="{{search_type}}">
+        <button class="pagination-btn next" type="submit">&gt;</button>
       </form>
     </div>
 
-    <table class="table  table-bordered table-striped" style="margin-left:10px; margin-right:10px;">
-        <thead class="thead-dark">
-          <tr>
-            <th>Rank</th>
-            <th>Artist</th>
-            <th>Title</th>
-            <th>Lyrics</th>
-          </tr>
-        </thead>
-        <tbody>
+    <table class="table table-bordered table-striped">
+      <thead class="thead-dark">
+        <tr>
+          <th>Rank</th>
+          <th>Artist</th>
+          <th>Title</th>
+          <th>Lyrics</th>
+        </tr>
+      </thead>
+      <tbody>
         <!-- jinja2 Technique -->
         {% if results %}  
-            {% for i in results %}
+          {% for i in results %}
             <tr>
-                <td class="text-nowrap">{{i.rank}}</td>
-                <td class="text-nowrap">{{i.artist | safe}}</td>
-                <td class="text-nowrap">{{i.title | safe}}</td>
-                <td>{{i.lyrics | safe}}</td>
+              <td class="text-nowrap">{{i.rank}}</td>
+              <td class="text-nowrap">{{i.artist | safe}}</td>
+              <td class="text-nowrap">{{i.title | safe}}</td>
+              <td>{{i.lyrics | safe}}</td>
             </tr>
-            {% endfor %}
+          {% endfor %}
         {% endif %}
-        </tbody>
-      </table>
-    </div>
+      </tbody>
+    </table>
+  </div>
 {% endblock %}

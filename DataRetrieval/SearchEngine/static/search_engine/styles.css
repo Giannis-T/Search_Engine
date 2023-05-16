@@ -1,29 +1,9 @@
-  .select_fields {
-    left: 55%;
-    bottom: 40%;
-    position: absolute;
-    font-family: Arial, Helvetica, sans-serif;
-    border-radius: 4px; 
-    border-color: rgb(215, 214, 214);  
-    width:100px;
-    padding:10px 15px;
-    border-width: 1px;
-    text-align: center;
-    color:rgb(49, 45, 45);
-    font-size: medium;
-    background-color: white;
-  } 
-  .select_fields :hover {
-    background-color: rgb(241, 239, 235);
-    color: black;
-  }
 
   .logo {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    margin: 130px 0;
-    /* margin: */
+    margin: 130px 0; 
     font-family: arial,sans-serif;
     color: #bdc1c6;
     padding: 5px;
@@ -41,6 +21,9 @@
     width: 500px;
     height: 34px;
     padding: 5px; 
+    text-align: left;
+    margin-bottom: 30px;
+    padding-left:10px;
   }
   input:focus{
     outline: none;
@@ -50,30 +33,6 @@
   .input_text [type="text"]:hover {
     border: 1px solid rgb(199, 198, 198);
   }
-
-  .search_button input[type="submit"] {
-    text-align: center;
-    color:rgb(49, 45, 45);
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: medium;
-    background-color: white;
-    position: absolute;
-    left: 54%;
-    align-self: center;
-    transform: translateX(-105%);
-    margin: 260px 0;
-    padding:9px 9px;
-    border-radius: 4px; /*roundness*/
-    border-color: rgb(215, 214, 214);  
-    width:100px;
-    border-width: 1px;
-  }
-
-  .search_button input[type="submit"]:hover {
-    background-color: rgb(241, 239, 235);
-    color: black;
-  } 
-
 
   .base_links {
     position: absolute;
@@ -87,18 +46,8 @@
   width: 100%;
  }
 
- 
-.previous {
-  background-color: #f1f1f1;
-  color: black;
-}
 
-.next {
-  background-color: #04AA6D;
-  color: white;
-}
-
-.round {
+ .round {
   border-radius: 50%;
   border-width: 0px;
   text-decoration: none;
@@ -115,4 +64,174 @@
   padding:15px; 
   border-bottom:1px solid rgb(241, 239, 235);
   
+} 
+
+ .container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  position: relative;
+}
+
+.title {
+  text-align: center;
+}
+
+.groupBy-form {
+  text-align: center;
+  margin-bottom: 20px;
+}
+.groupBy-btn {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.groupBy-btn:hover {
+  background-color: rgb(241, 239, 235);
+  color: black;
+}
+
+.current-page {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.pagination-btn {
+  background-color: #333;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.pagination-btn:hover {
+  background-color: rgb(241, 239, 235);
+  color: black;
+}
+
+.pagination-btn:not(:last-child) {
+  margin-right: 10px
+} 
+
+
+.previous {
+  background-color: #f1f1f1;
+  color: black;
+  margin-right:7px;
+}
+
+.previous:hover {
+  background-color: #333;
+  color: #fff;
+}
+
+body {
+  background-color: #f8f8f8;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.history-logo {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.history_link {
+  display: block;
+  color: #4285f4;
+  text-decoration: none;
+  margin-bottom: 10px;
+}
+
+.delete_link {
+  display: block;
+  color: #555;
+  text-decoration: none;
+  margin-top: 20px;
+}
+
+.history_result {
+  background-color: #fff;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.button_group {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 260px;
+}
+
+.search_button input[type="submit"], .select_fields {
+  text-align: center;
+  color:rgb(49, 45, 45);
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: medium;
+  background-color: white;
+  padding:9px 9px;
+  border-radius: 4px; 
+  border-color: rgb(215, 214, 214);  
+  width:100px;
+  border-width: 1px;
+} 
+
+.select_fields {
+  margin-left: 10px;
+}
+
+.table {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  text-align: left;
+}
+
+.table th {
+  background-color: #333;
+  color: #fff;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: #f9f9f9;
+}
+
+.table-bordered {
+  border-collapse: collapse;
+}
+
+.table-bordered th,
+.table-bordered td {
+  border: 1px solid #ddd;
 }
