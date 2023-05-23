@@ -17,7 +17,6 @@
 
 ### Υπηρεσίες της  Lucene Search Engine   
 *   Υπηρεσία Αναζήτησης(Lucene Search Service)
-*   Υπηρεσία Σημασιολογικής Αναζήτησης(Semantic Search Service)
 
 *   Υπηρεσία Σημασιολογικής Αναζήτησης(Semantic Search Service)    
 
